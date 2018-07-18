@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hipster Friendly Design Imageboard</title>
+    <link rel="stylesheet" href="/stylesheet.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+
+            </div>
+            <div v-bind:class="menuOpen ? 'menu open' : 'menu' ">
+                <div class="form">
+                    <div class="hidemenu"></div>
+                <form>
+                    <input v-model="imgFormInfo.title" type="text" placeholder="TITLE"><br>
+                    <input v-model="imgFormInfo.description" type="text" placeholder="DESCRIPTION" not required><br>
+                    <input v-model="imgFormInfo.username" type="text" placeholder="YOUR NAME"><br>
+                    <input v-on:change="selectFile" type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                    <label for="file">{{chooseFile}}</label><br>
+                    <div class="uploadImage">OK (Demo, upload is disabled)</div>
+                    <!-- <div class="uploadImage" v-on:click="uploadImage">OK (upload is disabled)</div> -->
+                </form>
+            </div>
+                <div v-bind:class="menuOpen ? 'uploadBtn open' : 'uploadBtn' " v-on:click="toggleMenu">
+                    <div class="x"></div><div class="y"></div>
+                </div>
+            </div>
+            <div class="content flex" v-if="images.length > 0">
+
+                <div class="card" v-for="image in images">
+                    <div class="cardImg"><a v-bind:href="'#' + image.id"><img v-bind:src="image.url"></a><a v-bind:href="'#' + image.id"><h2>{{image.title}}</h2></a></div>
+                </div>
+
+                <div class="card more" v-on:click="moreImages"><div class="filler"></div><h2></h2></div>
+            </div>
+
+
+            <image-modal
+            v-if="currentImageId"
+            v-bind:id="currentImageId"
+            v-on:close="closeModal">
+        </image-modal>
+    </main>
+
+    <script id="image-modal-template" type="text/x-template">
+        <div id="modalContainer" v-bind:class="modalOpen ? 'modal up' : 'modal' ">
+            <div class="arrow prev"><a v-if="currentImage.next_id != null" v-bind:href="'#' + currentImage.next_id"><div class="prev-one"></div><div class="prev-two"></div></a></div>
+            <div class="arrow next"><a v-if="currentImage.prev_id != null" v-bind:href="'#' + currentImage.prev_id"><div class="next-one"></div><div class="next-two"></div></a></div>
+            <div class="xxx" v-on:click="closeMe"><div class="xx"></div><div class="yy"></div></div>
+            <img v-bind:src="currentImage.url"></img>
+
+
+            <div class="modalUnderimage">
+                <div class="modalBig">{{currentImage.title}}</div>
+                <div class="modalMedium">{{currentImage.description}}</div>
+                <div class="modalSmall">Uploaded by {{currentImage.username}} on {{ (new Date(currentImage.created_at)).toDateString() }} at {{ (new Date(currentImage.created_at)).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }}</div>
+                <div class="something">
+                <input class="inputComment" v-model="commentForm.comment" type="text" placeholder="Say Something"></input><br>
+                <input class="inputUser" v-model="commentForm.commenter" type="text" placeholder="Your name"></input>
+                <div class="buttonPost uploadImage" v-on:keyup.13="submitComment" v-on:click="submitComment">Post</div>
+            </div>
+
+                    <div class="something" v-if="comments.length">
+                        <div class="comments" v-for="comment in comments">
+                            {{ comment.comment }}
+                            <div class="modalSmallLeft">
+                                <br>commented by {{ comment.commenter }} on on {{ (new Date(comment.created_at)).toDateString() }} at {{ (new Date(comment.created_at)).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})  }}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+    </div>
+    </script>
+
+
+    <script src="/js/vue.js"></script>
+    <script src="/js/axios.min.js"></script>
+    <script src="/js/script.js"></script>
+
+</body>
+</html>

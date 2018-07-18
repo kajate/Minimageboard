@@ -1,0 +1,508 @@
+* {
+    padding: 0px;
+    margin: 0;
+    padding: 0;
+    font-weight: 100;
+    font-family: Helvetica;
+}
+
+body {
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+a {
+    text-decoration: none;
+    font-size: inherit;
+    font-weight: 100;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 10px;
+    float: right;
+    display: block;
+}
+
+p {
+    display: inline-block;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.menu {z-index: 98;
+    padding-left: 20px;
+    position: fixed;
+    width: 100%;
+    top: -395px;
+    transition: transform 0.5s; /* Animation */
+    background-color: rgba(255, 255, 255, 0);
+    /* box-shadow: 1px 1px 1px lightgray; */
+}
+
+.hidemenu {
+    z-index: 99;
+    padding-left: 20px;
+    position: fixed;
+    width: 1000px;
+    height: 340px;
+    top: -370px;
+    background-color: rgba(255, 255, 255, 1);
+    /* box-shadow: 1px 1px 1px lightgray; */
+}
+
+.form {
+    padding-top: 25px;
+    padding-bottom: 5px;
+    height: 370px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.menu.open {
+    z-index: 99;
+    transform: translateY(380px);
+    transition-duration: 0.5s;
+}
+
+input {
+    width: 150px;
+    height: 20px;
+    font-size: 10px;
+    margin: 19px auto;
+    padding: 2px;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 4px solid lightgray;
+}
+
+.form input {
+    display: inline;
+    padding-left: 0px;
+}
+
+input:focus, input:hover {
+    border-bottom: 4px solid black;
+}
+
+.inputfile {
+    height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+    width: 0.1px;
+    z-index: -1;
+}
+
+.inputfile + label {
+    border-bottom: 4px solid lightgray;
+    color: gray;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 10px;
+    margin: 20px auto;
+    margin-top: 22px;
+    padding-left: 2px;
+    height: 16.5px;
+    width: 155px;
+
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    color: black;
+    border-bottom: 4px solid black;
+}
+
+
+/* BUTTON TO OPEN MENU (PLUS AND MINUS-BUTTON) */
+
+.uploadBtn {
+    cursor: pointer;
+    position: relative;
+    top: 10px;
+    height: 20px;
+    width: 20px;
+    z-index: 98;
+}
+
+.uploadBtn:hover .x, .uploadBtn:hover .y {
+    background-color: black;
+    cursor: pointer;
+}
+
+.open .y {
+    transform: rotate(-180deg);
+    transition-property: transform;
+    transition-duration: 1.2s;
+}
+
+.x {
+    background-color: lightgray;
+    margin-top: 8px;
+    height: 4px;
+    width: 20px;
+}
+
+.y {
+    width: 20px;
+    height: 4px;
+    background-color: lightgray;
+    margin-top: -4px;
+    transform: rotate(90deg);
+    transition-property: transform;
+    transition-duration: 1.2s;
+}
+
+.open {
+    cursor: default;
+    width: 100%;
+    /* border:1px solid black; */
+    height: 100vh;
+    background-color: transparent;
+}
+
+/* UPLOAD BUTTON IN MENU */
+
+.uploadImage {
+    width: 150px;
+    height: 16px;
+    font-size: 10px;
+    margin: 20px auto;
+    padding: 2px;
+    display: inline-block;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+    color: gray;
+    border-bottom: 4px solid lightgray;
+}
+
+.uploadImage:hover {
+    color: black;
+    border-bottom: 4px solid black;
+}
+
+
+/* IMAGE BOARD SECTION  */
+
+.content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* CARDS  */
+
+.card {
+    display: flex;
+    align-items: flex-end;
+    margin: 20px;
+    border-bottom: 4px solid lightgray;
+    font-size: 12px;
+    width: 220px;
+    padding-bottom: 10px;
+    overflow: hidden;
+    color: white;
+}
+
+.cardImg img {
+    width: 220px;
+    object-fit: scale-down;
+}
+
+.card a {
+    margin-top: 10px;
+    color: white;
+}
+
+.card:hover A {
+    color: black;
+}
+
+.card:hover {
+    border-bottom: 4px solid black;
+}
+
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    top: 24%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    font-size: 12px;
+    transform: translate(-50%, -25%);
+    background-color:white;
+    padding-top: 50px;
+    z-index: 99;
+}
+
+.modal img {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 70vh;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.modalSmall {
+    width:100%;
+    font-size: 8px;
+    float:right;
+    text-align: right;
+    color: gray;
+}
+
+.modalSmallLeft {
+    width:100%;
+    font-size: 8px;
+    float:right;
+    text-align: left;
+    color: gray;
+}
+
+.modalMedium {
+    width:100%;
+    font-size: 12px;
+    margin-top: 10px;
+    float:right;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.modalBig{
+    width:100%;
+    font-size: 16px;
+    float:right;
+    text-align: right;
+}
+
+.modal.openModal {
+    background-color: red;
+
+}
+
+
+/* COMMENTS */
+
+.modalUnderimage {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+.comments {
+    margin: 0 auto;
+    max-width: 400px;
+    position: relative;
+    height: 50px;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.inputUser {
+    margin-bottom: 10px;
+}
+.something {
+    margin-top: 20px;
+}
+
+.inputComment {
+    width: 100%;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.buttonPost {
+    padding-top: 5px;
+    float:right;
+    margin-bottom: 10px;
+}
+
+/* MODAL NEXT PREV BUTTON  */
+.arrow {
+    font-family: Helvetica;
+    font-size: 30px;
+    font-weight: 800;
+    height: 40px;
+    margin-left: 2%;
+    margin-right: 2%;
+    position: fixed;
+    top: 30%;
+}
+
+.arrow a:visited {
+    color: gray;
+}
+
+.arrow a:hover {
+    color: black;
+}
+
+.prev:hover .prev-one {
+    background-color: black;
+    transform: rotate(-45deg);
+    background-color: black;
+    transition: transform 0.2s, background-color 0.5s;
+}
+
+.prev:hover .prev-two {
+    background-color: black;
+    transform: rotate(45deg);
+    background-color: black;
+    transition: transform 0.2s, background-color 0.5s;
+}
+.prev-one {
+    width: 100px;
+    height: 4px;
+    transform: rotate(90deg);
+    background-color: lightgray;
+    transition: transform 0.2s, background-color 0.5s;
+}
+
+.prev-two {
+    margin-top: 65px;
+    width: 100px;
+    height: 4px;
+    transform: rotate(-90deg);
+    transition: transform 0.2s;
+    background-color: lightgray;
+    transition: transform 0.2s, background-color 0.5s;
+}
+
+.prev {
+    padding-top: 50px;
+    height: 120px;
+    /* border: 1px solid black; */
+    float: left;
+}
+
+.next {
+    padding-top: 50px;
+    height: 120px;
+    float:right;
+    right:0;
+}
+
+
+.next:hover .next-one {
+    background-color: black;
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+    background-color: black;
+}
+
+.next:hover .next-two {
+    background-color: black;
+    transform: rotate(-45deg);
+    transition: transform 0.2s;
+    background-color: black;
+}
+.next-one {
+    width: 100px;
+    height: 4px;
+    transform: rotate(-90deg);
+    transition: transform 0.2s;
+    background-color: lightgray;
+}
+
+.next-two {
+    margin-top: 65px;
+    width: 100px;
+    height: 4px;
+    transform: rotate(90deg);
+    transition: transform 0.2s;
+    background-color: lightgray;
+}
+
+
+/* MODAL CLOSE BUTTON  */
+
+.xxx {
+    height: 20px;
+    /* border: 1px solid black; */
+    float:right;
+    margin-top: -10px;
+    margin-right: 19px;
+    cursor: pointer;
+}
+
+.xxx:hover .xx {
+    background-color: black;
+    transform: rotate(-180deg);
+    transition-property: transform;
+    transition-duration: 1.2s;
+}
+
+.xxx:hover .yy {
+    background-color: black;
+    transform: rotate(-180deg);
+    transition-property: transform;
+    transition-duration: 1.2s;
+}
+
+.xx {
+    width: 22px;
+    height: 4px;
+    background-color: lightgray;
+    margin-top: 8px;
+    transform: rotate(135deg);
+}
+
+.yy {
+    width: 22px;
+    height: 4px;
+    background-color: lightgray;
+    margin-top: -4px;
+    transform: rotate(-135deg);
+    transition-property: transform;
+    transition-duration: 1.2s;
+}
+
+
+/* MORE BUTTON */
+
+.filler {
+    width: 200px;
+    z-index: 1;
+    height:
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+}
+
+.more {
+    border-bottom: 4px solid lightgray;
+    height: 369px;
+    cursor: pointer;
+    font-size: 12px;
+    width: 215px;
+    padding-bottom: 16px;
+    color: lightgray;
+    font-family: Helvetica;
+    text-align: right;
+    display: inline-block;
+}
+
+.more:hover {
+     color: black;
+}
