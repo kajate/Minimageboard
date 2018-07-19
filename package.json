@@ -2,9 +2,9 @@
     "name": "minimageboard",
     "version": "1.0.0",
     "description": "",
-    "maing": "index.js",
+    "maing": "server.js",
     "scripts": {
-        "start": "node index.js"
+        "start": "node server.js"
     },
     "engines": {
         "node": "8.11.1"
